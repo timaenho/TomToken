@@ -1,4 +1,4 @@
-const Token = artifacts.require("MyToken");
+const Token = artifacts.require("TomToken");
 
 var chai = require("chai");
 
