@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >0.6.0;
+pragma solidity 0.8.7;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
@@ -48,21 +48,21 @@ contract Crowdsale is Context, ReentrancyGuard {
     event TokensPurchased(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
 
     /**
-     * @param rate Number of token units a buyer gets per wei
+     * @param paramRate Number of token units a buyer gets per wei
      * @dev The rate is the conversion between wei and the smallest and indivisible
      * token unit. So, if you are using a rate of 1 with a ERC20Detailed token
      * with 3 decimals called TOK, 1 wei will give you 1 unit, or 0.001 TOK.
-     * @param wallet Address where collected funds will be forwarded to
-     * @param token Address of the token being sold
+     * @param paramWallet Address where collected funds will be forwarded to
+     * @param paramToken Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, IERC20 token)  {
-        require(rate > 0, "Crowdsale: rate is 0");
-        require(wallet != address(0), "Crowdsale: wallet is the zero address");
-        require(address(token) != address(0), "Crowdsale: token is the zero address");
+     constructor (uint256 paramRate, address payable paramWallet, IERC20 paramToken){
+        require(paramRate > 0, "Crowdsale: rate is 0");
+        require(paramWallet != address(0), "Crowdsale: wallet is the zero address");
+        require(address(paramToken) != address(0), "Crowdsale: token is the zero address");
 
-        _rate = rate;
-        _wallet = wallet;
-        _token = token;
+        _rate = paramRate;
+        _wallet = paramWallet;
+        _token = paramToken;
     }
 
     /**
