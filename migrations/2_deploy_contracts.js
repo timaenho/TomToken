@@ -1,5 +1,6 @@
 var TomToken = artifacts.require("./TomToken.sol");
 var MyTokenSales = artifacts.require("./MyTokenSale.sol");
+var KycContract = artifacts.require("./KycContract.sol")
 
 module.exports = async function(deployer) {
 let addr = await web3.eth.getAccounts();
