@@ -1,22 +1,25 @@
 import React, { Component } from "react";
+import MyToken from "./contracts/MyToken.json";
+import MyTokenSale from "./contracts/MyToken.json"
+import KycContract from "./contracts/KycContract.json"
 import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
-
+//ik was hier bezig
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contract: null };
 
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+      this.web3 = await getWeb3();
 
       // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
+      this.accounts = await this.web3.eth.getAccounts();
 
       // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
+      this.networkId = await this.web3.eth.net.getId();
       const deployedNetwork = SimpleStorageContract.networks[networkId];
       const instance = new web3.eth.Contract(
         SimpleStorageContract.abi,
