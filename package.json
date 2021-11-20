@@ -1,0 +1,26 @@
+{
+  "name": "tomtoken",
+  "version": "1.0.0",
+  "description": "ERC-20_token",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timaenho/TomToken.git"
+  },
+  "author": "Moon_Krater",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timaenho/TomToken/issues"
+  },
+  "homepage": "https://github.com/timaenho/TomToken#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.3",
+    "solc": "^0.8.10"
+  }
+}
