@@ -21,6 +21,9 @@
   "homepage": "https://github.com/timaenho/TomToken#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.3",
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "chai-bn": "^0.3.0",
     "solc": "^0.8.10"
   }
 }
