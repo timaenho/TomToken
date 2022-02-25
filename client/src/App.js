@@ -4,10 +4,11 @@ import MyTokenSale from "./contracts/MyTokenSale.json";
 import KycContract from "./contracts/KycContract.json";
 import getWeb3 from "./getWeb3";
 
+
 import "./App.css";
 
 class App extends Component {
-  state = { loaded: false };
+  state = { loaded: false, kycAddress: "0x123" };
 
   componentDidMount = async () => {
     try {
@@ -18,8 +19,10 @@ class App extends Component {
       this.accounts = await this.web3.eth.getAccounts();
 
       // Get the contract instance.
-      this.networkId = await this.web3.eth.getChainId(); 
-
+      //this.networkId = await this.web3.eth.getChainId();
+      this.networkId =  5777
+      console.log(this.networkId)
+      
       this.myToken = new this.web3.eth.Contract(
         MyToken.abi,
         MyToken.networks[this.networkId] && MyToken.networks[this.networkId].address,
@@ -46,22 +49,46 @@ class App extends Component {
     }
   };
 
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+
+  handleKycSubmit = async () => {
+    const {kycAddress} = this.state;
+    console.log(kycAddress)
+    console.log(this.kycContract)
+    await this.kycContract.methods.setKycCompleted(kycAddress).send({from: this.accounts[0]});
+    alert("Account "+kycAddress+" is now whitelisted");
+  }
+
+
   render() {
     if (!this.state.loaded) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
       <div className="App">
-        <h1>Hello crypto-freaks</h1>
-        <h1>Do you want to buy the most awesome memeCoin in the frickin' world</h1>
-        <h2>Well..., then buy: TomToken!!!!! (there are only 1000000 of them). That is scarce as f***!!!!!</h2>
+
+        <h1>Capuccino Token for StarDucks</h1>
+
+
 
         <h2>Enable your account</h2>
+
         Address to allow: <input type="text" name="kycAddress" value={this.state.kycAddress} onChange={this.handleInputChange} />
+
         <button type="button" onClick={this.handleKycSubmit}>Add Address to Whitelist</button>
+
       </div>
     );
   }
+
 }
 
 export default App;
